@@ -1,0 +1,44 @@
+# Python-specific ignores
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+*.log
+*.egg-info/
+dist/
+build/
+*.egg
+*.egg-info
+htmlcov/
+.coverage
+.tox/
+.coverage
+**/venv
+
+# Vue.js-specific ignores
+**/node_modules/
+**/dist/
+*.log
+npm-debug.log
+yarn-error.log
+yarn-error.log.*
+*.lock
+*.swp
+*.swo
+*.swn
+
+# General ignores
+*.DS_Store
+Thumbs.db
+
+# Editor/IDE-specific ignores
+*.pyc
+*.pyo
+*.swp
+*.swo
+*.swn
+*.sublime-workspace
+*.sublime-project
+*.vscode/
