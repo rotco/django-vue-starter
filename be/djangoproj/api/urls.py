@@ -1,4 +1,4 @@
 from django.urls import path
 from .views import *
 
-urlpatterns = [path("items", ItemList.as_view())]
+urlpatterns = [path("users", UserList.as_view())]

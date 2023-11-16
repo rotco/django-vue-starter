@@ -1,8 +1,6 @@
 <template>
   <div>
-    <h1>
-      <Greetings message="Home Page" />
-    </h1>
+    <h1>Hello World</h1>
     <div>
       {{ items }}
     </div>
@@ -10,9 +8,8 @@
 </template>
 
 <script>
-import Greetings from "../components/Greetings.vue";
 export default {
-  components: { Greetings },
+  components: {},
 
   data() {
     return {
