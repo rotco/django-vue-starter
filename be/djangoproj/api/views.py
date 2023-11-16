@@ -4,6 +4,8 @@ from django.core.serializers import serialize
 from django.views import View
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
+from django.urls import reverse_lazy
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
 from .models import User
 from django.db.models import Q
@@ -38,3 +40,16 @@ class UserList(View):
             return JsonResponse({"results": user_data}, status=201)
         errors = {"errors": form.errors}
         return JsonResponse(errors, status=400)
+
+
+@method_decorator(csrf_exempt, name="dispatch")
+class UserDeleteView(DeleteView):
+    model = User
+
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.object.delete()
+        data = {
+            "message": f"Successfully deleted {str(self.object.name)}",
+        }
+        return JsonResponse(data)
