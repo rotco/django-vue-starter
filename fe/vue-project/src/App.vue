@@ -4,10 +4,6 @@ import Home from "./views/Home.vue";
 </script>
 
 <template>
-  <nav>
-    <RouterLink to="/">Home</RouterLink>
-    <RouterLink to="/about">About</RouterLink>
-  </nav>
   <div>
     <RouterView />
   </div>

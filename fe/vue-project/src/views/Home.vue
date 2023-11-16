@@ -1,34 +1,42 @@
 <template>
   <div>
-    <h1>Hello World</h1>
+    <ActionsBar name="top" />
     <div>
-      {{ items }}
+      {{ users }}
     </div>
   </div>
 </template>
 
 <script>
+import ActionsBar from "../components/ActionsBar.vue";
 export default {
-  components: {},
+  components: { ActionsBar },
 
   data() {
     return {
-      items: [],
+      users: [],
     };
   },
   methods: {
-    async getItems() {
-      console.log("getItems");
+    async getUsers() {
+      console.log("getUsers");
       const response = await (
-        await fetch("http://localhost:8000/api/items")
+        await fetch("http://localhost:8000/api/users")
       ).json();
-      this.items = response.results;
+      this.users = response.results;
     },
   },
   mounted() {
-    this.getItems();
+    this.getUsers();
   },
 };
 </script>
 
-<style></style>
+<style>
+.filters-actions-bar,
+.filters,
+.actions {
+  display: flex;
+  justify-content: space-between;
+}
+</style>
