@@ -2,7 +2,13 @@
   <div class="filters-actions-bar">
     <div class="filters">
       <div class="filter">
-        <input v-model="dateFilter" type="checkbox" id="date" name="date" />
+        <input
+          @change="handleFilter"
+          v-model="dateFilter"
+          type="checkbox"
+          id="date"
+          name="date"
+        />
         <label for="date">date</label>
       </div>
       <div class="filter">

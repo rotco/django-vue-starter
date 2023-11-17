@@ -35,7 +35,6 @@ const store = createStore({
     },
     deleteUser(state, id) {
       state.users = state.users.filter((user) => user.id != id);
-      console.log("updateFilteredUserIds:", data);
     },
   },
   getters: {
