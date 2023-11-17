@@ -1,16 +1,25 @@
 <template>
   <div>
-    <ActionsBar name="top" />
     <div>
-      {{ users }}
+      <ActionsBar locationId="tableWithActions" />
+      <div>
+        <UsersTable locationId="tableWithActions" />
+      </div>
+    </div>
+    <div>
+      <ActionsBar locationId="tableNoActions" />
+      <div>
+        <UsersTable locationId="tableNoActions" />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import ActionsBar from "../components/ActionsBar.vue";
+import UsersTable from "../components/UsersTable.vue";
 export default {
-  components: { ActionsBar },
+  components: { ActionsBar, UsersTable },
 
   data() {
     return {
@@ -24,6 +33,7 @@ export default {
         await fetch("http://localhost:8000/api/users")
       ).json();
       this.users = response.results;
+      this.$store.commit("updateUsers", this.users);
     },
   },
   mounted() {

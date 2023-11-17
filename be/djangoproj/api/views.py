@@ -16,7 +16,7 @@ import json
 
 
 @method_decorator(csrf_exempt, name="dispatch")
-class UserList(View):
+class FilteredUserIds(View):
     def get(self, request):
         q_filter = Q()
         search_input = request.GET.get("search")
@@ -24,6 +24,14 @@ class UserList(View):
             q_filter |= Q(name__icontains=search_input)
             q_filter |= Q(address__icontains=search_input)
         users = User.objects.filter(q_filter)
+        ids = list(users.values_list("id", flat=True))
+        return JsonResponse({"results": ids}, safe=False)
+
+
+@method_decorator(csrf_exempt, name="dispatch")
+class UserList(View):
+    def get(self, request):
+        users = User.objects.all()
         serialized_users = list(users.values())
         return JsonResponse({"results": serialized_users}, safe=False)
 
