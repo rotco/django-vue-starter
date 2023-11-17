@@ -1,6 +1,6 @@
 <template>
   <tr>
-    <td v-if="!filters?.date">{{ user.date }}</td>
+    <td v-if="!filters?.date">{{ formatDate(user.date) }}</td>
     <td v-if="!filters?.name">{{ user.name }}</td>
     <td v-if="!filters?.address">{{ user.address }}</td>
     <td v-if="locationId == 'tableWithActions'" @click="omitDeleteUser">
@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import TrashIcon from "../assets/trash32x32.png";
+import moment from "moment";
 
 export default {
   props: ["user", "filters", "locationId", "deleteUser"],
@@ -18,6 +18,9 @@ export default {
     omitDeleteUser() {
       this.$emit("deleteUser", this.user);
       console.log("omitDeleteUser", this.user);
+    },
+    formatDate(date) {
+      return moment(date).format("YYYY-MM-DD");
     },
   },
 };
