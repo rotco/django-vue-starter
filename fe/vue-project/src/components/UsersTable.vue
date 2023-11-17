@@ -28,6 +28,7 @@
 
 <script>
 import UserRow from "./UserRow.vue";
+
 export default {
   components: { UserRow },
   props: ["locationId"],
