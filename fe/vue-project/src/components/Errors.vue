@@ -5,7 +5,12 @@
       {{ key }}:
       <div v-for="value in values" :key="value">{{ value }}</div>
     </div>
-    <input type="button" value="Close" @click="$emit('closeErrors')" />
+    <input
+      class="submit-button"
+      type="button"
+      value="Close"
+      @click="$emit('closeErrors')"
+    />
   </div>
 </template>
 

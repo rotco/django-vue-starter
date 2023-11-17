@@ -49,4 +49,30 @@ export default {
   display: flex;
   justify-content: space-between;
 }
+.submit-button {
+  background-color: #127bea;
+  color: white;
+  padding: 10px 20px;
+  border: 1px solid rgba(128, 128, 128, 0.485);
+
+  border-radius: 2px;
+}
+.cancel-button {
+  background-color: #ffffff;
+  color: rgb(116, 111, 111);
+  padding: 10px 20px;
+  border: 1px solid rgba(128, 128, 128, 0.485);
+  border-radius: 2px;
+}
+input {
+  padding: 10px 20px;
+  margin-left: 10px;
+  border: 1px solid rgba(128, 128, 128, 0.485);
+  border-radius: 2px;
+}
+body {
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+}
 </style>

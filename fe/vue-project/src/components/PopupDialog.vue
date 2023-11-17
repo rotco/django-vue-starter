@@ -8,8 +8,18 @@
         <input type="text" v-model="form[key]" />
       </div>
       <div class="popup-buttons">
-        <input @click="$emit('closeDialog')" value="Cancel" type="button" />
-        <input @click="$emit('handleConfirm')" value="Confirm" type="button" />
+        <input
+          class="cancel-button"
+          @click="$emit('closeDialog')"
+          value="Cancel"
+          type="button"
+        />
+        <input
+          class="submit-button"
+          @click="$emit('handleConfirm')"
+          value="Confirm"
+          type="button"
+        />
       </div>
     </div>
   </div>

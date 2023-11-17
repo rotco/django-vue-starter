@@ -9,7 +9,7 @@
     />
     <table>
       <thead>
-        <tr>
+        <tr class="table-head">
           <th v-if="!filters[locationId]?.date">Date</th>
           <th v-if="!filters[locationId]?.name">Name</th>
           <th v-if="!filters[locationId]?.address">Address</th>
@@ -84,4 +84,21 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 60px;
+}
+th,
+td {
+  text-align: left;
+}
+thead tr {
+  border-bottom: 1px solid #00000022;
+}
+tbody tr {
+  border-bottom: 1px solid #0000000d;
+}
+</style>

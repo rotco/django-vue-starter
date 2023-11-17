@@ -48,7 +48,12 @@
           v-model="searchQuery"
         />
       </div>
-      <input type="button" value="Add User" @click="showAddUserDialog = true" />
+      <input
+        class="submit-button"
+        type="button"
+        value="Add User"
+        @click="showAddUserDialog = true"
+      />
     </div>
   </div>
 </template>
