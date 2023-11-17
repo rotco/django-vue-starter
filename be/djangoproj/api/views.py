@@ -37,7 +37,7 @@ class UserList(View):
 
     @csrf_exempt
     def post(self, request):
-        form = UserForm(request.POST)
+        form = UserForm(json.loads(request.body))
         if form.is_valid():
             user = form.save()
             user_data = {

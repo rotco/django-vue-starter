@@ -1,5 +1,12 @@
 <template>
   <div class="filters-actions-bar">
+    <PopupDialog
+      v-if="showAddUserDialog"
+      @handleConfirm="addUser"
+      @closeDialog="closeDialog"
+      header="Add User"
+      :form="userForm"
+    />
     <div class="filters">
       <div class="filter">
         <input
@@ -40,13 +47,15 @@
           v-model="searchQuery"
         />
       </div>
-      <button>Add User</button>
+      <input type="button" value="Add User" @click="showAddUserDialog = true" />
     </div>
   </div>
 </template>
 
 <script>
+import PopupDialog from "../components/PopupDialog.vue";
 export default {
+  components: { PopupDialog },
   props: ["locationId"],
   data() {
     return {
@@ -55,6 +64,11 @@ export default {
       addressFilter: false,
       searchTimeout: null,
       searchQuery: "",
+      showAddUserDialog: false,
+      userForm: {
+        name: "",
+        address: "",
+      },
     };
   },
   watch: {
@@ -93,6 +107,35 @@ export default {
       if (response && response.results) {
         this.$store.commit("updateFilteredUserIds", response.results);
       }
+    },
+    async addUser() {
+      console.log("addUser", this.userForm);
+      const options = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(this.userForm),
+      };
+      const response = await (
+        await fetch("http://localhost:8000/api/users", options)
+      ).json();
+      console.log("addUser response:", response);
+      if (response && response.results) {
+        this.$store.commit("pushUserToStore", response.results);
+        this.initUserForm();
+      }
+      this.showAddUserDialog = false;
+    },
+    initUserForm() {
+      this.userForm = {
+        name: "",
+        address: "",
+      };
+    },
+    closeDialog() {
+      this.initUserForm();
+      this.showAddUserDialog = false;
     },
   },
 };

@@ -14,7 +14,6 @@ const store = createStore({
       filters: {},
       users: [],
       filteredUserIds: null,
-      count: 0,
     };
   },
   mutations: {
@@ -32,6 +31,9 @@ const store = createStore({
     },
     deleteUser(state, id) {
       state.users = state.users.filter((user) => user.id != id);
+    },
+    pushUserToStore(state, user) {
+      state.users.push(user);
     },
   },
   getters: {

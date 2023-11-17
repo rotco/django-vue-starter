@@ -1,21 +1,12 @@
 <template>
   <div>
-    <div v-if="showDeleteDialog" class="popup">
-      <div>
-        <div class="popup-header">Delete User</div>
-        <div class="popup-text">
-          Are you sure you want to delete {{ selectedUser.name }} ?
-        </div>
-        <div class="popup-buttons">
-          <input
-            @click="showDeleteDialog = false"
-            value="Cancel"
-            type="button"
-          />
-          <input @click="deleteUser()" value="Confirm" type="button" />
-        </div>
-      </div>
-    </div>
+    <PopupDialog
+      v-if="showDeleteDialog"
+      @handleConfirm="deleteUser"
+      @closeDialog="showDeleteDialog = false"
+      header="Delete User"
+      text="Are you sure you want to delete the user ?"
+    />
     <table>
       <thead>
         <tr>
@@ -32,7 +23,7 @@
           :filters="filters[locationId]"
           :locationId="locationId"
           v-if="
-            locationId == 'tableWithActions' ||
+            locationId == 'tableNoActions' ||
             filteredUserIds == null ||
             (filteredUserIds && filteredUserIds.has(user.id))
           "
@@ -44,10 +35,10 @@
 </template>
 
 <script>
+import PopupDialog from "./PopupDialog.vue";
 import UserRow from "./UserRow.vue";
-
 export default {
-  components: { UserRow },
+  components: { UserRow, PopupDialog },
   props: ["locationId"],
   data() {
     return {
@@ -93,20 +84,4 @@ export default {
 };
 </script>
 
-<style>
-.popup {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: rgba(0, 0, 0, 0.5);
-  justify-content: center;
-  align-items: center;
-  z-index: 1;
-  background-color: #fff;
-  padding: 50px;
-  border-radius: 5px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-  text-align: center;
-}
-</style>
+<style></style>
