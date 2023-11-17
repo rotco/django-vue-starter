@@ -3,7 +3,7 @@
     <td v-if="!filters?.date">{{ user.date }}</td>
     <td v-if="!filters?.name">{{ user.name }}</td>
     <td v-if="!filters?.address">{{ user.address }}</td>
-    <td v-if="locationId == 'tableWithActions'" @click="deleteUser">
+    <td v-if="locationId == 'tableWithActions'" @click="omitDeleteUser">
       <img src="../assets/trash32x32.png" alt="TrashIcon" style="width: 20px" />
     </td>
   </tr>
@@ -13,11 +13,11 @@
 import TrashIcon from "../assets/trash32x32.png";
 
 export default {
-  props: ["user", "filters", "locationId"],
+  props: ["user", "filters", "locationId", "deleteUser"],
   methods: {
-    deleteUser() {
-      console.log("this.user.id", this.user.id);
-      this.$store.commit("deleteUser", this.user.id);
+    omitDeleteUser() {
+      this.$emit("deleteUser", this.user);
+      console.log("omitDeleteUser", this.user);
     },
   },
 };

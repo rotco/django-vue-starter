@@ -1,5 +1,21 @@
 <template>
   <div>
+    <div v-if="showDeleteDialog" class="popup">
+      <div>
+        <div class="popup-header">Delete User</div>
+        <div class="popup-text">
+          Are you sure you want to delete {{ selectedUser.name }} ?
+        </div>
+        <div class="popup-buttons">
+          <input
+            @click="showDeleteDialog = false"
+            value="Cancel"
+            type="button"
+          />
+          <input @click="deleteUser()" value="Confirm" type="button" />
+        </div>
+      </div>
+    </div>
     <table>
       <thead>
         <tr>
@@ -20,6 +36,7 @@
             filteredUserIds == null ||
             (filteredUserIds && filteredUserIds.has(user.id))
           "
+          @deleteUser="handleDeleteUserButton"
         />
       </tbody>
     </table>
@@ -37,9 +54,20 @@ export default {
       filters: {},
       users: [],
       filteredUserIds: null,
+      showDeleteDialog: false,
+      selectedUser: null,
     };
   },
-  methods: {},
+  methods: {
+    handleDeleteUserButton(user) {
+      this.selectedUser = user;
+      this.showDeleteDialog = true;
+    },
+    deleteUser() {
+      this.$store.commit("deleteUser", this.selectedUser.id);
+      this.showDeleteDialog = false;
+    },
+  },
   computed: {
     usersFromStore() {
       return this.$store.getters.users;
@@ -65,4 +93,20 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  background-color: #fff;
+  padding: 50px;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+</style>

@@ -18,9 +18,6 @@ const store = createStore({
     };
   },
   mutations: {
-    increment(state) {
-      state.count++;
-    },
     updateFilters(state, data) {
       state.filters = data;
       console.log("updateFilters:", data);
