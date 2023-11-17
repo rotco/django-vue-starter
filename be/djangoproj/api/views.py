@@ -54,7 +54,7 @@ class UserList(View):
 class UserDeleteView(DeleteView):
     model = User
 
-    def delete(self, request, *args, **kwargs):
+    def delete(self, request):
         self.object = self.get_object()
         self.object.delete()
         data = {

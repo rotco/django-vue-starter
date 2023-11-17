@@ -1,5 +1,6 @@
 <template>
   <div class="filters-actions-bar">
+    <Errors :errors="errors" @closeErrors="closeErrors" v-if="showErrors" />
     <PopupDialog
       v-if="showAddUserDialog"
       @handleConfirm="addUser"
@@ -54,8 +55,9 @@
 
 <script>
 import PopupDialog from "../components/PopupDialog.vue";
+import Errors from "../components/Errors.vue";
 export default {
-  components: { PopupDialog },
+  components: { PopupDialog, Errors },
   props: ["locationId"],
   data() {
     return {
@@ -69,6 +71,8 @@ export default {
         name: "",
         address: "",
       },
+      errors: {},
+      showErrors: false,
     };
   },
   watch: {
@@ -124,6 +128,11 @@ export default {
       if (response && response.results) {
         this.$store.commit("pushUserToStore", response.results);
         this.initUserForm();
+      } else if (response.errors) {
+        console.log("errors:", response.errors);
+        this.errors = response.errors;
+        this.initUserForm();
+        this.showErrors = true;
       }
       this.showAddUserDialog = false;
     },
@@ -136,6 +145,9 @@ export default {
     closeDialog() {
       this.initUserForm();
       this.showAddUserDialog = false;
+    },
+    closeErrors() {
+      this.showErrors = false;
     },
   },
 };
