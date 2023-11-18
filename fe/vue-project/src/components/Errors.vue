@@ -39,7 +39,6 @@ export default {
 }
 .errors-text {
   display: flex;
-  align-items: center;
   flex-direction: column;
 }
 </style>

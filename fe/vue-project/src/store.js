@@ -26,6 +26,9 @@ export default createStore({
     },
     pushUserToStore(state, user) {
       state.users.push(user);
+      if (state.filteredUserIds) {
+        state.filteredUserIds.add(user.id);
+      }
     },
   },
   getters: {
