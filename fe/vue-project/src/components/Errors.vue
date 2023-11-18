@@ -1,16 +1,27 @@
 <template>
   <div class="popup">
-    <h3>Errors:</h3>
-    <div v-for="(values, key, index) in errors" :key="index">
-      {{ key }}:
-      <div v-for="value in values" :key="value">{{ value }}</div>
+    <div class="popup-header" style="color: red">Errors:</div>
+    <div class="errors-container">
+      <div class="errors-text">
+        <div
+          style="margin-bottom: 20px"
+          v-for="(values, key, index) in errors"
+          :key="index"
+        >
+          <span style="font-size: large">{{ key }}:</span>
+          <li v-for="value in values" :key="value">{{ value }}</li>
+        </div>
+      </div>
     </div>
-    <input
-      class="submit-button"
-      type="button"
-      value="Close"
-      @click="$emit('closeErrors')"
-    />
+
+    <div class="popup-buttons">
+      <input
+        class="submit-button"
+        type="button"
+        value="Close"
+        @click="$emit('closeErrors')"
+      />
+    </div>
   </div>
 </template>
 
@@ -20,20 +31,15 @@ export default {
 };
 </script>
 
-<style>
-.popup {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: rgba(0, 0, 0, 0.5);
-  justify-content: center;
+<style scoped>
+.errors-container {
+  display: table;
+  margin-left: auto;
+  margin-right: auto;
+}
+.errors-text {
+  display: flex;
   align-items: center;
-  z-index: 1;
-  background-color: #fff;
-  padding: 50px;
-  border-radius: 5px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-  text-align: center;
+  flex-direction: column;
 }
 </style>

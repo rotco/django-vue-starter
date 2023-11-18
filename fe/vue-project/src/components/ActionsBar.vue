@@ -17,7 +17,7 @@
           id="date"
           name="date"
         />
-        <label for="date">date</label>
+        <label for="date">Date</label>
       </div>
       <div class="filter">
         <input
@@ -27,7 +27,7 @@
           id="name"
           name="name"
         />
-        <label for="name">name</label>
+        <label for="name">Name</label>
       </div>
       <div class="filter">
         <input
@@ -37,7 +37,7 @@
           id="address"
           name="address"
         />
-        <label for="address">address</label>
+        <label for="address">Address</label>
       </div>
     </div>
     <div v-if="locationId == 'tableWithActions'" class="actions">
@@ -46,6 +46,7 @@
           placeholder="Search"
           @change="handleSearch"
           v-model="searchQuery"
+          class="search-box"
         />
       </div>
       <input
@@ -158,4 +159,18 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.search-box {
+  width: 300px;
+}
+.filter {
+  margin-right: 24px;
+}
+.filters {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+label {
+  margin-left: 10px;
+}
+</style>

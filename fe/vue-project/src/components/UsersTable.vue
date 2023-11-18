@@ -94,6 +94,7 @@ table {
 th,
 td {
   text-align: left;
+  height: 40px;
 }
 thead tr {
   border-bottom: 1px solid #00000022;

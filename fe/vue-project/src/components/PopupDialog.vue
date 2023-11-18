@@ -1,11 +1,27 @@
 <template>
   <div class="popup">
     <div>
-      <div class="popup-header">{{ header }}</div>
-      <div class="popup-text">{{ text }}</div>
-      <div v-for="(value, key, index) in form" :key="index">
-        <label>{{ key }}</label>
-        <input type="text" v-model="form[key]" />
+      <div class="popup-header">
+        <div>{{ header }}</div>
+        <img
+          src="../assets/close_icon.png"
+          alt="TrashIcon"
+          style="width: 10px; height: 10px"
+          @click="$emit('closeDialog')"
+        />
+      </div>
+      <div class="popup-body">
+        {{ text }}
+        <div>
+          <div
+            class="popup-inputs"
+            v-for="(value, key, index) in form"
+            :key="index"
+          >
+            <label style="text-transform: capitalize">{{ key }}</label>
+            <input class="text-input" type="text" v-model="form[key]" />
+          </div>
+        </div>
       </div>
       <div class="popup-buttons">
         <input
@@ -38,13 +54,36 @@ export default {
   left: 50%;
   transform: translate(-50%, -50%);
   background: rgba(0, 0, 0, 0.5);
-  justify-content: center;
-  align-items: center;
   z-index: 1;
   background-color: #fff;
-  padding: 50px;
+  padding: 20px;
   border-radius: 5px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  min-width: 60%;
+}
+
+.popup-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: larger;
+  color: grey;
+}
+.popup-body {
   text-align: center;
+  display: flex;
+  justify-content: center;
+}
+.popup-buttons {
+  display: flex;
+  justify-content: right;
+}
+.popup-inputs {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px;
+}
+.text-input {
+  width: 400px;
 }
 </style>

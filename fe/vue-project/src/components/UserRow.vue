@@ -4,7 +4,11 @@
     <td v-if="!filters?.name">{{ user.name }}</td>
     <td v-if="!filters?.address">{{ user.address }}</td>
     <td v-if="locationId == 'tableWithActions'" @click="omitDeleteUser">
-      <img src="../assets/trash32x32.png" alt="TrashIcon" style="width: 20px" />
+      <img
+        src="../assets/3844460_can_trash_icon.png"
+        alt="TrashIcon"
+        style="width: 24px; height: 24px"
+      />
     </td>
   </tr>
 </template>

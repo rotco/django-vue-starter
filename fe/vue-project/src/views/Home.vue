@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <div>
       <ActionsBar locationId="tableWithActions" />
       <div>
@@ -54,25 +54,25 @@ export default {
   color: white;
   padding: 10px 20px;
   border: 1px solid rgba(128, 128, 128, 0.485);
-
-  border-radius: 2px;
+  border-radius: 5px;
 }
 .cancel-button {
   background-color: #ffffff;
   color: rgb(116, 111, 111);
   padding: 10px 20px;
   border: 1px solid rgba(128, 128, 128, 0.485);
-  border-radius: 2px;
+  border-radius: 5px;
 }
 input {
   padding: 10px 20px;
-  margin-left: 10px;
+  margin-left: 8px;
   border: 1px solid rgba(128, 128, 128, 0.485);
-  border-radius: 2px;
+  border-radius: 5px;
 }
-body {
+.container {
   width: 95%;
   margin-left: auto;
   margin-right: auto;
+  font-family: sans-serif;
 }
 </style>
