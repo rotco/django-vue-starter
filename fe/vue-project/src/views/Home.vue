@@ -1,17 +1,9 @@
 <template>
   <div class="container">
-    <div>
-      <ActionsBar locationId="tableWithActions" />
-      <div>
-        <UsersTable locationId="tableWithActions" />
-      </div>
-    </div>
-    <div>
-      <ActionsBar locationId="tableNoActions" />
-      <div>
-        <UsersTable locationId="tableNoActions" />
-      </div>
-    </div>
+    <ActionsBar locationId="tableWithActions" />
+    <UsersTable locationId="tableWithActions" />
+    <ActionsBar locationId="tableNoActions" />
+    <UsersTable locationId="tableNoActions" />
   </div>
 </template>
 
@@ -21,19 +13,13 @@ import UsersTable from "../components/UsersTable.vue";
 export default {
   components: { ActionsBar, UsersTable },
 
-  data() {
-    return {
-      users: [],
-    };
-  },
   methods: {
     async getUsers() {
       console.log("getUsers");
       const response = await (
         await fetch("http://localhost:8000/api/users")
       ).json();
-      this.users = response.results;
-      this.$store.commit("updateUsers", this.users);
+      this.$store.commit("updateUsers", response.results);
     },
   },
   mounted() {
