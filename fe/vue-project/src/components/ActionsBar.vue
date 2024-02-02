@@ -137,7 +137,7 @@ export default {
       } else if (response.errors) {
         console.log("errors:", response.errors);
         this.errors = response.errors;
-        this.initUserForm();
+        // this.initUserForm();
         this.showErrors = true;
       }
       this.showAddUserDialog = false;
